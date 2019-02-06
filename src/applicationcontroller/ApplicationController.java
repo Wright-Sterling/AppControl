@@ -18,11 +18,27 @@ public class ApplicationController {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        myAppController.mapCommand("Example", new ExampleHandler());
-        HashMap <String, Object> exampleParams = new HashMap();
-        exampleParams.put("Key", "Value String as Object");
+        myAppController.mapCommand("String", new StringHandler());
+        //Simulate another command
+        myAppController.mapCommand("Object", new ObjectHandler());
+
+        //Parameters for string command
+        HashMap <String, Object> stringParams = new HashMap();
+        stringParams.put("Key", "Value String as Object");
+
+        //Parameters for object command
+        HashMap <String, Object> beanParams = new HashMap();
+        ExampleBean myBean = new ExampleBean();
+        myBean.setId(1);
+        myBean.setName("Porter Rockwell");
+        myBean.setCalling("Problem Solver");
+        //Add bean to hashmap
+        beanParams.put("Display",myBean);
         
-        myAppController.handleRequest("Example",exampleParams);
-    }
-    
+        //Now call the handlers
+        System.out.println("-Handling String request");
+        myAppController.handleRequest("String",stringParams);
+        System.out.println("-Handling Object request");
+        myAppController.handleRequest("Object",beanParams);
+    }    
 }

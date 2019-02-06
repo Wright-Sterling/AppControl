@@ -11,9 +11,12 @@ import java.util.HashMap;
  *
  * @author jswrigh
  */
-public class ExampleHandler implements Handler {
+public class ObjectHandler implements Handler {
     @Override
     public void handleIt(HashMap<String, Object> dataMap) {
-        System.out.println(dataMap);
+        ExampleBean temp = (ExampleBean) dataMap.get("Display");
+        System.out.println(temp.getId());
+        System.out.println(temp.getName());
+        System.out.println(temp.getCalling());
     }
 }
